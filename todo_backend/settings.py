@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework_swagger',
 
     'companies',
+    'loginsys',
 ]
 
 MIDDLEWARE = [
@@ -104,6 +105,33 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Session
+
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+
+# Django REST framework
+
+LOGIN_URL = 'rest_framework:login'
+LOGOUT_URL = 'rest_framework:logout'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ),
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',
+        'rest_framework.parsers.FormParser',
+        'rest_framework.parsers.MultiPartParser',
+        'rest_framework.parsers.FileUploadParser',
+    ),
+}
+
+AUTH_USER_MODEL = 'loginsys.User'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
