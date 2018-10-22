@@ -1,3 +1,5 @@
 .idea/
+*.pyc
+*.db
 env
 settings_local.py
