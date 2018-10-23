@@ -6,6 +6,7 @@ schema_view = get_swagger_view(title='TODO API')
 
 urlpatterns = [
     url(r'^', include('loginsys.urls')),
+    url(r'^todos/', include('todo.urls')),
 ]
 
 if settings.DEBUG:
